@@ -1,3 +1,3 @@
-# packagist_test
+# he_test
 
-composer require "jigui/packagist_test:*" -vvv
+composer require "jigui/he_test:*" -vvv
