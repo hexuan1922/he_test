@@ -1,13 +1,12 @@
 {
-    "name": "jigui/packagist_test",
-    "description": "packagist_test",
+    "name": "jigui/he_test",
+    "description": "he_test",
     "authors": [
         {
             "name": "jigui",
             "email": "jigui@staff.weibo.com"
         }
     ],
-    "minimum-stability" : "dev",
     "license": "MIT",
     "require": {},
     "autoload": {
