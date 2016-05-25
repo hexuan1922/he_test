@@ -3,7 +3,8 @@
 ## packagist 流程安装  ##
     composer require "jigui/he_test:*" -vvv
 
-## 手动流程安装  ##
+## 手动流程安装  ##
+
 若只是想把这个类库的资源.在别的composer项目B中用..且不想走packagist这套流程...则可以按:
 
  1. 项目B的vender文件夹下建立一个Ford文件夹..
