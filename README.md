@@ -38,9 +38,16 @@
 
     composer dumpautoload -o -vvv
 **正常执行后.不知为何会将刚才手动添加的 map记录..给清除掉..郁闷呀..**
-即使将当前项目的composer.json也复制过去...也是不行...
-composer.phar内部的逻辑..还真没去细看呀..
+即使将当前项目的composer.json也复制过去...也是不行...composer.phar内部的逻辑..还真没去细看呀..
 
-    所以.若此时项目B要引入其它包时.
-    每次 composer install/update/requirer成功后..都会自动的dump-autoload -o一下...
-    就会把手动添加的清除掉.导致的结果就是不能自动加载了..
+这是因为
+1. composer 读取composer.lock, 取得安装了哪些包，遍历这些包，下一步
+2. composer 默认根据每个包的autoload段的描述...生成对应的加载方式
+所以你如果不是通过composer 安装的包,每次dumpautoload时..都会根据composer.lock里的列表重新生成一次结果到对应的加载文件的文件中...
+
+所以.若此时项目B要引入其它包时.
+每次 composer install/update/requirer成功后..都会自动的dump-autoload -o一下...
+就会把手动添加的清除掉.导致的结果就是不能自动加载了..
+
+
+若是手动的现有的包里加了一个文件...此时dumpautoload -o时则会把新增的文件 补充到classmap里...
