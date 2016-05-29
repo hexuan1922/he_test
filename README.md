@@ -40,10 +40,12 @@
 **正常执行后.不知为何会将刚才手动添加的 map记录..给清除掉..郁闷呀..**
 即使将当前项目的composer.json也复制过去...也是不行...composer.phar内部的逻辑..还真没去细看呀..
 
-这是因为
-1. composer 读取composer.lock, 取得安装了哪些包，遍历这些包，下一步
-2. composer 默认根据每个包的autoload段的描述...生成对应的加载方式
-所以你如果不是通过composer 安装的包,每次dumpautoload时..都会根据composer.lock里的列表重新生成一次结果到对应的加载文件的文件中...
+看composer require xxxx -vvv 的日志,好像是
+1 download xxxx
+2 读vendor/composer/installed.json..Generating autoload files
+3 php artisan optimize
+自己尝试手动在installed.json和composer.lock文件中.添加对应的pack段后..尝试 dumpautoload 发现依然不能加载..不明白呀..
+
 
 所以.若此时项目B要引入其它包时.
 每次 composer install/update/requirer成功后..都会自动的dump-autoload -o一下...
